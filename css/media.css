@@ -1,0 +1,35 @@
+@media (max-width: 767px) {
+  .logo__link {
+    font-size: 2.8rem;
+  }
+
+  .answer__list {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .answer__details {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .start {
+    background-image: url('../assets/images/start__bg.jpg');
+    background-position: 80% 120%;
+    background-repeat: no-repeat;
+    background-size: auto 104%;
+    height: 60vh;
+  }
+
+  .start__video {
+    display: none;
+  }
+
+  .gallery__item {
+    width: 96%;
+  }
+
+  .gallery__sound audio {
+    width: 240px;
+  }
+}
