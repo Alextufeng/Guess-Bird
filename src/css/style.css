@@ -1,10 +1,12 @@
+@import url(./normalize.css);
+@import url(./media.css);
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@100;300;400;500;700&display=swap");
 
 @font-face {
   font-family: "Montiran";
-  src: url("./assets/fonts/Montiran-ywVMV.otf") format("opentype"),
-    url("./assets/fonts/montiran-ywvmv-webfont.woff2") format("woff2"),
-    url("./assets/fonts/montiran-ywvmv-webfont.woff") format("woff");
+  src: url("../assets/fonts/Montiran-ywVMV.otf") format("opentype"),
+    url("../assets/fonts/montiran-ywvmv-webfont.woff2") format("woff2"),
+    url("../assets/fonts/montiran-ywvmv-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -422,14 +424,14 @@ body {
 .play-button {
   width: 26px;
   height: 26px;
-  background-image: url(./assets/icons/play.svg);
+  background-image: url(../assets/icons/play.svg);
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
 }
 
 .play-button-pause {
-  background-image: url(./assets/icons/pause.svg);
+  background-image: url(../assets/icons/pause.svg);
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -437,14 +439,14 @@ body {
 .qur-audio-mute {
   width: 24px;
   height: 24px;
-  background-image: url(./assets/icons/quiz_volume_on.svg);
+  background-image: url(../assets/icons/quiz_volume_on.svg);
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
 }
 
 .muted {
-  background-image: url(./assets/icons/quiz_volume_off.svg);
+  background-image: url(../assets/icons/quiz_volume_off.svg);
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -630,14 +632,14 @@ body {
 .what-sound__play-button {
   width: 26px;
   height: 26px;
-  background-image: url(./assets/icons/play.svg);
+  background-image: url(../assets/icons/play.svg);
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
 }
 
 .what-sound__play-button-pause {
-  background-image: url(./assets/icons/pause.svg);
+  background-image: url(../assets/icons/pause.svg);
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -645,14 +647,14 @@ body {
 .what-sound__audio-mute {
   width: 24px;
   height: 24px;
-  background-image: url(./assets/icons/quiz_volume_on.svg);
+  background-image: url(../assets/icons/quiz_volume_on.svg);
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
 }
 
 .what-sound__muted {
-  background-image: url(./assets/icons/quiz_volume_off.svg);
+  background-image: url(../assets/icons/quiz_volume_off.svg);
   background-repeat: no-repeat;
   background-size: contain;
 }
