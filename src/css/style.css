@@ -1,15 +1,6 @@
 @import url(./normalize.css);
 @import url(./media.css);
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@100;300;400;500;700&display=swap");
-
-@font-face {
-  font-family: "Montiran";
-  src: url("../assets/fonts/Montiran-ywVMV.otf") format("opentype"),
-    url("../assets/fonts/montiran-ywvmv-webfont.woff2") format("woff2"),
-    url("../assets/fonts/montiran-ywvmv-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
+@import url(./fonts.css);
 
 * {
   margin: 0;

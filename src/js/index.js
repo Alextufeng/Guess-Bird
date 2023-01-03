@@ -1,3 +1,6 @@
+import "@babel/polyfill";
+import "../index.html";
+import "../css/style.css";
 import birdsDataEn from "./en.js";
 import birdsData from "./ru.js";
 import langBirds from "./lang.js";
@@ -128,18 +131,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //sounds on btn clicks
-  const audioNo = new Audio("./src/assets/audio/wrongClick1.mp3");
-  const audioYes = new Audio("./src/assets/audio/winClick.mp3");
-  const audioFin = new Audio("./src/assets/audio/finish.mp3");
+  const audioNo = new Audio();
+  audioNo.src = "./assets/audio/wrongClick1.mp3";
+  const audioYes = new Audio();
+  audioYes.src = "./assets/audio/winClick.mp3";
+  const audioFin = new Audio();
+  audioFin.src = "./assets/audio/finish.mp3";
 
   //volume of the game
   const audioBtn = document.querySelector(".volume");
   let audioOn = localStorage.getItem("sound")
     ? JSON.parse(localStorage.getItem("sound"))
     : true;
+
   audioBtn.innerHTML = localStorage.getItem("soundBtn")
     ? JSON.parse(localStorage.getItem("soundBtn"))
-    : `<img src="./src/assets/icons/volume_on.svg" alt="">`;
+    : `<img src="./assets/icons/volume_on.svg" alt="">`;
 
   function audioYesPlay() {
     if (audioOn) {
@@ -147,25 +154,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function audioNoPlay() {
+  async function audioNoPlay() {
     if (audioOn) {
-      audioNo.play();
+      await audioNo.play();
     }
   }
 
-  function audioFinPlay() {
+  async function audioFinPlay() {
     if (audioOn) {
-      audioFin.play();
+      await audioFin.play();
     }
   }
 
   //function audioFinStop() {audioFin.pause();};
   audioBtn.addEventListener("click", () => {
     if (audioOn) {
-      audioBtn.innerHTML = `<img src="./src/assets/icons/volume_off.svg" alt="">`;
+      audioBtn.innerHTML = `<img src="./assets/icons/volume_off.svg" alt="">`;
       audioOn = false;
     } else {
-      audioBtn.innerHTML = `<img src="./src/assets/icons/volume_on.svg" alt="">`;
+      audioBtn.innerHTML = `<img src="./assets/icons/volume_on.svg" alt="">`;
       audioOn = true;
     }
     localStorage.setItem("sound", JSON.stringify(audioOn));
@@ -247,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".what-bird-description").classList.add("hidden");
     document.querySelector(
       ".qur-bird__img"
-    ).innerHTML = `<img src="./src/assets/images/question__bird.jpg">`;
+    ).innerHTML = `<img src="./assets/images/question__bird.jpg">`;
     document.querySelector(".qur-bird__name").innerHTML = `<h3>*******</h3>`;
     if (
       nextBtn.innerHTML == "Go To Results!" ||
