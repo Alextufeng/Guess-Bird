@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { resourceLimits } = require("worker_threads");
 const mode = process.env.NODE_ENV || "development";
 
 const devMode = mode === "development";
@@ -22,7 +23,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true,
     filename: "[name].[contenthash].js",
-    assetModuleFilename: "assets/[hash][ext]",
+    assetModuleFilename: "assets/[name][ext]",
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -39,6 +40,10 @@ module.exports = {
         loader: "html-loader",
       },
       {
+        test: /\.mp3$/,
+        loader: "file-loader",
+      },
+      {
         test: /\.css$/i,
         use: [
           devMode ? "style-loader" : MiniCssExtractPlugin.loader,
@@ -51,7 +56,7 @@ module.exports = {
               },
             },
           },
-          "sass-loader",
+          //"sass-loader",
         ],
       },
       {
@@ -63,6 +68,7 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|svg|gif)$/i,
+        type: "asset/resource",
         use: [
           {
             loader: "image-webpack-loader",
@@ -85,10 +91,10 @@ module.exports = {
               webp: {
                 quality: 75,
               },
+              //type: "asset/resource",
             },
           },
         ],
-        //type: "asset/resource",
       },
       {
         test: /\.m?js$/,

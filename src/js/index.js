@@ -4,6 +4,12 @@ import "../css/style.css";
 import birdsDataEn from "./en.js";
 import birdsData from "./ru.js";
 import langBirds from "./lang.js";
+import volumeOn from "../assets/icons/volume_on.svg";
+import volumeOff from "../assets/icons/volume_off.svg";
+import questionBird from "../assets/images/question__bird.jpg";
+import winClick from "../assets/audio/winClick.mp3";
+import wrongClick from "../assets/audio/wrongClick.mp3";
+import finalClick from "../assets/audio/finish.mp3";
 
 document.addEventListener("DOMContentLoaded", () => {
   //page-nav
@@ -131,12 +137,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //sounds on btn clicks
-  const audioNo = new Audio();
-  audioNo.src = "./assets/audio/wrongClick1.mp3";
-  const audioYes = new Audio();
-  audioYes.src = "./assets/audio/winClick.mp3";
-  const audioFin = new Audio();
-  audioFin.src = "./assets/audio/finish.mp3";
+  let clickSound = document.createElement("audio");
+  let clickSoundSrc = document.createElement("source");
+  clickSound.append(clickSoundSrc);
+
+  /* const audioNo = new Audio("./assets/audio/wrongClick1.mp3");
+  const audioYes = new Audio("./assets/audio/winClick.mp3");
+  const audioFin = new Audio("./assets/audio/finish.mp3"); */
 
   //volume of the game
   const audioBtn = document.querySelector(".volume");
@@ -144,39 +151,48 @@ document.addEventListener("DOMContentLoaded", () => {
     ? JSON.parse(localStorage.getItem("sound"))
     : true;
 
-  audioBtn.innerHTML = localStorage.getItem("soundBtn")
+  const volumeImg = document.createElement("img");
+  audioBtn.append(volumeImg);
+
+  volumeImg.src = localStorage.getItem("soundBtn")
     ? JSON.parse(localStorage.getItem("soundBtn"))
-    : `<img src="./assets/icons/volume_on.svg" alt="">`;
+    : volumeOn;
 
   function audioYesPlay() {
     if (audioOn) {
-      audioYes.play();
+      document.querySelector(".qur-bird__name").append(clickSound);
+      clickSoundSrc.src = winClick;
+      clickSound.play();
     }
   }
 
-  async function audioNoPlay() {
+  function audioNoPlay() {
     if (audioOn) {
-      await audioNo.play();
+      document.querySelector(".qur-bird__name").append(clickSound);
+      clickSoundSrc.src = wrongClick;
+      clickSound.play();
     }
   }
 
-  async function audioFinPlay() {
+  function audioFinPlay() {
     if (audioOn) {
-      await audioFin.play();
+      document.querySelector(".btn").append(clickSound);
+      clickSoundSrc.src = finalClick;
+      clickSound.play();
     }
   }
 
   //function audioFinStop() {audioFin.pause();};
   audioBtn.addEventListener("click", () => {
     if (audioOn) {
-      audioBtn.innerHTML = `<img src="./assets/icons/volume_off.svg" alt="">`;
+      volumeImg.src = volumeOff;
       audioOn = false;
     } else {
-      audioBtn.innerHTML = `<img src="./assets/icons/volume_on.svg" alt="">`;
+      volumeImg.src = volumeOn;
       audioOn = true;
     }
     localStorage.setItem("sound", JSON.stringify(audioOn));
-    localStorage.setItem("soundBtn", JSON.stringify(audioBtn.innerHTML));
+    localStorage.setItem("soundBtn", JSON.stringify(volumeImg.src));
   });
 
   //fill the answer field
@@ -254,7 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".what-bird-description").classList.add("hidden");
     document.querySelector(
       ".qur-bird__img"
-    ).innerHTML = `<img src="./assets/images/question__bird.jpg">`;
+    ).innerHTML = `<img src=${questionBird}>`;
     document.querySelector(".qur-bird__name").innerHTML = `<h3>*******</h3>`;
     if (
       nextBtn.innerHTML == "Go To Results!" ||
